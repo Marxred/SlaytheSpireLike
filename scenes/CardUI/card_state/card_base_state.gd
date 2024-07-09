@@ -7,7 +7,7 @@ func enter()->void:
 	
 	card_ui.reparent_requested.emit(card_ui)
 	card_ui.color.color = Color.WEB_GREEN
-	card_ui.state.text = "BASE" + get_parent().get_parent().name
+	card_ui.state.text = "BASE" + card_ui.card.id
 	card_ui.pivot_offset = Vector2.ZERO
 
 func on_gui_input(event: InputEvent)->void:

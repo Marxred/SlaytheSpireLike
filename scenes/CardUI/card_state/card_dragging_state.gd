@@ -10,12 +10,18 @@ func enter()->void:
 	card_ui.state.text = "DRAGGING"
 
 
-func on_gui_input(event: InputEvent)->void:
+func on_input(event: InputEvent)->void:
+	var single_targeted: bool = card_ui.card.is_single_targeted()
 	var mouse_motion: bool = event is InputEventMouseMotion
 	var cancel: bool = event.is_action_pressed("right_mouse")
-	var confirm: bool = event.is_action_pressed("left_mouse")
+	var confirm: bool = event.is_action_pressed("left_mouse") or event.is_action_released("left_mouse")
 	
 	super(event)
+	
+	if single_targeted and mouse_motion and card_ui.targets.size() > 0.0:
+		transition_requested.emit(self, CardState.State.AIMING)
+		return
+	
 	if mouse_motion:
 		card_ui.global_position = card_ui.get_global_mouse_position()\
 									- card_ui.pivot_offset

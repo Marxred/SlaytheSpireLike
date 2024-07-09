@@ -10,10 +10,15 @@ config_version=5
 
 [application]
 
-config/name="Slaythe Spire Like"
+config/name="Slay the Spire Like"
+config/tags=PackedStringArray("instance")
 run/main_scene="res://scenes/Battle/battle.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Events="*res://global/events.gd"
 
 [display]
 
@@ -40,6 +45,7 @@ right_mouse={
 
 2d_physics/layer_1="CardTargetSelector"
 2d_physics/layer_2="CardDropArea"
+2d_physics/layer_3="Enemy"
 
 [rendering]
 

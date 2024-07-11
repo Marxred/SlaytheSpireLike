@@ -1,5 +1,6 @@
 extends CardState
 
+## 进入DRAGGING状态时脱离手牌位置，重设canvaslayer为父节点
 func enter()->void:
 	super()
 	var ui_layer:= get_tree().get_first_node_in_group("ui_layer")
@@ -9,7 +10,11 @@ func enter()->void:
 	card_ui.color.color = Color.NAVY_BLUE
 	card_ui.state.text = "DRAGGING"
 
-
+## 在当前状态下卡牌始终跟随鼠标光标
+## 有三种状态转换
+## 1. 卡牌针对单个敌人，在指定区域可以进入瞄准状态
+## 2. 其他种卡牌直接进入释放状态
+## 3. 松开左键或按下右键回到BASE状态
 func on_input(event: InputEvent)->void:
 	var single_targeted: bool = card_ui.card.is_single_targeted()
 	var mouse_motion: bool = event is InputEventMouseMotion

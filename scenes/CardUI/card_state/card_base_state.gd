@@ -1,5 +1,6 @@
 extends CardState
 
+## 基本状态，手牌状态。进入该状态就回归手牌
 func enter()->void:
 	super()
 	if not card_ui.is_node_ready():
@@ -10,6 +11,7 @@ func enter()->void:
 	card_ui.state.text = "BASE" + card_ui.card.id
 	card_ui.pivot_offset = Vector2.ZERO
 
+## 进入卡牌区域，单击鼠标左键进入CLICKED状态
 func on_gui_input(event: InputEvent)->void:
 	super(event)
 	if event.is_action_pressed("left_mouse"):

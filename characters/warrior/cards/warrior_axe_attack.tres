@@ -7,3 +7,4 @@ script = ExtResource("1_l32px")
 id = "warrior_axe_attack"
 type = 0
 target = 1
+cost = 0

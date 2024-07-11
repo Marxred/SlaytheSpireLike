@@ -7,3 +7,4 @@ script = ExtResource("1_fu0jb")
 id = "warrior_block"
 type = 1
 target = 0
+cost = 0

@@ -1,5 +1,7 @@
 class_name CardState
 extends Node
+## 卡牌状态基类
+
 
 signal transition_requested(from: CardState, to: State)
 

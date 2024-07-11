@@ -9,3 +9,6 @@ func _ready() -> void:
 
 func _on_reparent_requested(child: CardUI)->void:
 	child.reparent(self)
+
+#手牌脚本
+## 手牌处于拖拽状态时脱离父节点，取消手牌后回归。

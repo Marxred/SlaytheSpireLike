@@ -1,7 +1,9 @@
 extends CardState
-
+## 释放卡牌状态
 var played: bool
 
+## 如果目标数组为空回到手牌
+## 不为空则在场上释放
 func enter()->void:
 	super()
 	

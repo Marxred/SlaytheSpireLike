@@ -1,9 +1,10 @@
 extends CardState
-
+## 卡牌瞄准状态
 
 const MOUSE_Y_SNAPBACK_THRESHOULD : int = 138
 const POSITION_DURATION: float = 0.2
 
+## 
 func enter()->void:
 	super()
 	card_ui.color.color = Color.WEB_PURPLE
@@ -16,7 +17,7 @@ func enter()->void:
 	Events.card_aim_started.emit(card_ui)
 	#最好放在最后
 	card_ui.animate_to_position(card_ui.parent.global_position + offset, POSITION_DURATION)
-
+## 
 func exit()->void:
 	super()
 	#若aiming状态存在时间小于POSITION_DURATION，则补间动画尚未结束就退出当前状态，卡牌无法归位。

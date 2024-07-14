@@ -3,12 +3,16 @@ extends CardState
 ## 进入DRAGGING状态时脱离手牌位置，重设canvaslayer为父节点
 func enter()->void:
 	super()
+	Events.card_drag_started.emit(card_ui)
+	#card_ui.panel.panel = card_ui.DARGGING_STYLE
+	card_ui.panel.set("theme_override_styles/panel", card_ui.DARGGING_STYLE)
 	var ui_layer:= get_tree().get_first_node_in_group("ui_layer")
 	if ui_layer:
 		card_ui.reparent(ui_layer)
-	
-	card_ui.color.color = Color.NAVY_BLUE
-	card_ui.state.text = "DRAGGING"
+
+func exit()->void:
+	super()
+	Events.card_drag_ended.emit(card_ui)
 
 ## 在当前状态下卡牌始终跟随鼠标光标
 ## 有三种状态转换

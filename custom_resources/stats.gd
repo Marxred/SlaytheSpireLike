@@ -3,6 +3,7 @@ extends Resource
 ## 状态基类，有最基本的状态，血量，护甲。
 ## 
 
+@export var init_block:int = 0
 @export var MAX_HEALTH: int = 1
 @export var ART: Texture
 var health:int: set = set_health
@@ -36,5 +37,5 @@ func heal(amount: int)->void:
 func new_instance()->Stats:
 	var instance: Stats = self.duplicate()
 	instance.health = MAX_HEALTH
-	instance.block = 0
+	instance.block = init_block
 	return instance

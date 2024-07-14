@@ -7,8 +7,6 @@ const POSITION_DURATION: float = 0.2
 ## 
 func enter()->void:
 	super()
-	card_ui.color.color = Color.WEB_PURPLE
-	card_ui.state.text = "AIMING"
 	card_ui.targets.clear()
 	
 	var offset: Vector2 = Vector2(card_ui.parent.size.x /2, 

@@ -27,8 +27,8 @@ func _get_points()->PackedVector2Array:
 	var points:Array=[]
 	var start:Vector2 = current_card.global_position
 	start.x += current_card.size.x /2
-	#var target :Vector2 = get_local_mouse_position()## 使用local会使用相对坐标
-	var target :Vector2 = get_global_mouse_position()## 使用global只与鼠标位置有关
+	#var target :Vector2 = get_local_mouse_position()## 使用local会使用相对坐标,返回相对于CardTargetSelector的坐标
+	var target :Vector2 = get_global_mouse_position()## line2D节点在canvaslayer节点下，如果移动CardTargetSelector相对坐标就改变了。所以需要使用global_position
 	var distance:Vector2 = target - start
 	
 	for i in range(ARC_POINTS):

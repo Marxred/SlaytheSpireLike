@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://ocxwpo8h57ts"]
+
+[ext_resource type="Theme" uid="uid://celpuetiajyjm" path="res://scenes/CardUI/main_theme.tres" id="1_uiclt"]
+[ext_resource type="Script" path="res://scenes/CardUI/mana_ui.gd" id="2_0pcqo"]
+
+[node name="ManaUI" type="Panel"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -30.0
+offset_right = 30.0
+offset_bottom = -10.0
+grow_vertical = 0
+theme = ExtResource("1_uiclt")
+script = ExtResource("2_0pcqo")
+
+[node name="ManaLeft" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "3/3"
+horizontal_alignment = 1
+vertical_alignment = 1

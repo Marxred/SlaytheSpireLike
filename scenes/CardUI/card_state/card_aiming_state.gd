@@ -13,6 +13,7 @@ func enter()->void:
 								-card_ui.size.y /2)
 	card_ui.drop_point_detector.monitoring = true
 	Events.card_aim_started.emit(card_ui)
+	Events.card_tooltip_hide.emit()
 	#最好放在最后
 	card_ui.animate_to_position(card_ui.parent.global_position + offset, POSITION_DURATION)
 ## 

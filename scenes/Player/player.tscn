@@ -12,7 +12,5 @@ position = Vector2(0, -8)
 texture = ExtResource("1_vr0e6")
 
 [node name="StatsUI" parent="." instance=ExtResource("2_tayoo")]
-offset_left = -21.0
-offset_top = -13.0
-offset_right = 26.0
-offset_bottom = 27.0
+offset_left = -20.0
+offset_right = 20.0

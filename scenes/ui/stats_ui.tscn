@@ -9,23 +9,26 @@
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 40.0
+offset_left = -22.5
+offset_right = 22.5
+offset_bottom = 16.0
 grow_horizontal = 2
 theme = ExtResource("1_5evj8")
+theme_override_constants/separation = 0
 alignment = 1
 script = ExtResource("2_wqbh8")
 
 [node name="Health" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 3
+theme_override_constants/separation = 2
 alignment = 1
 
 [node name="HealthImage" type="TextureRect" parent="Health"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("3_kow0k")
-stretch_mode = 5
+stretch_mode = 4
 
 [node name="HealthLabel" type="Label" parent="Health"]
 layout_mode = 2
@@ -33,12 +36,14 @@ text = "6"
 
 [node name="Block" type="HBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 2
+theme_override_constants/separation = 0
 
 [node name="BlockImage" type="TextureRect" parent="Block"]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture = ExtResource("2_cksil")
-stretch_mode = 5
+stretch_mode = 2
 
 [node name="BlockLabel" type="Label" parent="Block"]
 layout_mode = 2

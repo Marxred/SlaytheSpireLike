@@ -15,3 +15,8 @@ func set_char_stats(v: CharacterStats)->void:
 
 func on_stats_changed()->void:
 	mana_left.text = str(char_stats.mana) + "/" + str(char_stats.MAX_MANA)
+
+
+func _ready() -> void:
+	await get_tree().create_timer(2.0).timeout
+	char_stats.set_mana(5)

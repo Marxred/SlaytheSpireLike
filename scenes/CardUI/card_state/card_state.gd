@@ -31,8 +31,10 @@ func on_gui_input(_event: InputEvent)->void:
 
 
 func on_mouse_entered()->void:
+	print("DB on_mouse_entered ", state)
 	pass
 
 
 func on_mouse_exited()->void:
+	print("DB on_mouse_exited ", state)
 	pass

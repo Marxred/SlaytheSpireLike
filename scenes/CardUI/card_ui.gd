@@ -26,8 +26,8 @@ func set_playable(v: bool)->void:
 @export var char_stats: CharacterStats: set = set_char_stats
 func set_char_stats(v: CharacterStats)->void:
 	char_stats = v
-	char_stats.stats_changed.connect(on_char_stats_changed)
-	
+	char_stats.stats_changed.connect(self.on_char_stats_changed)
+
 func on_char_stats_changed()->void:
 	self.playable = char_stats.can_play_card(card)
 

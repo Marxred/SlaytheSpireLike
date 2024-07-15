@@ -1,5 +1,8 @@
 extends CardState
 
+var mouse_pressed_time: float = 0.1
+var mini_time_pass: bool = false
+
 ## 进入DRAGGING状态时脱离手牌位置，重设canvaslayer为父节点
 func enter()->void:
 	super()
@@ -9,6 +12,9 @@ func enter()->void:
 	var ui_layer:= get_tree().get_first_node_in_group("ui_layer")
 	if ui_layer:
 		card_ui.reparent(ui_layer)
+	mini_time_pass = false
+	(get_tree().create_timer(mouse_pressed_time, false)
+					.timeout.connect(func(): mini_time_pass = true))
 
 func exit()->void:
 	super()
@@ -34,8 +40,11 @@ func on_input(event: InputEvent)->void:
 	if mouse_motion:
 		card_ui.global_position = card_ui.get_global_mouse_position()\
 									- card_ui.pivot_offset
+	
 	if cancel:
 		transition_requested.emit(self, CardState.State.BASE)
-	elif confirm:
+		Events.card_tooltip_hide.emit()
+	
+	elif mini_time_pass and confirm:
 		get_viewport().set_input_as_handled()
 		transition_requested.emit(self, CardState.State.RELEASED)

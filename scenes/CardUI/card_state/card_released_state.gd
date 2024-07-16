@@ -12,6 +12,7 @@ func enter()->void:
 	if not card_ui.targets.is_empty():
 		played = true
 		print("play card for targer(s) ", card_ui.targets)
+		Events.card_tooltip_hide.emit()
 		card_ui.play()
 
 

@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://dx1hq3wq74h45"]
+[gd_scene load_steps=17 format=3 uid="uid://dx1hq3wq74h45"]
 
+[ext_resource type="Script" path="res://scenes/Battle/battle.gd" id="1_ewap5"]
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_ftft1"]
 [ext_resource type="PackedScene" uid="uid://5rfwhe3yc8r" path="res://scenes/CardUI/card_ui.tscn" id="2_8u0nx"]
 [ext_resource type="Script" path="res://scenes/ui/hand.gd" id="2_trssh"]
@@ -12,11 +13,15 @@
 [ext_resource type="Resource" uid="uid://bcekvtigj7dvn" path="res://enemies/carb/testEnemy.tres" id="5_xy1kj"]
 [ext_resource type="PackedScene" uid="uid://ocxwpo8h57ts" path="res://scenes/CardUI/mana_ui.tscn" id="7_jwhn4"]
 [ext_resource type="PackedScene" uid="uid://bfbc4ojvh1yoj" path="res://scenes/ui/Tooltip.tscn" id="8_l8ucd"]
+[ext_resource type="Script" path="res://scenes/Player/player_handler.gd" id="8_ncm58"]
+[ext_resource type="Script" path="res://scenes/Battle/battle_ui.gd" id="9_x1bxw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgawn"]
 size = Vector2(256, 100)
 
 [node name="Battle" type="Node2D"]
+script = ExtResource("1_ewap5")
+char_stats = ExtResource("4_h7eqq")
 metadata/_edit_lock_ = true
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -52,7 +57,11 @@ stats = ExtResource("5_xy1kj")
 [node name="CardTargetSelector" parent="." instance=ExtResource("3_t5jut")]
 position = Vector2(2, 142)
 
+[node name="PlayerHandler" type="Node" parent="."]
+script = ExtResource("8_ncm58")
+
 [node name="BattleUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
+script = ExtResource("9_x1bxw")
 
 [node name="ManaUI" parent="BattleUI" instance=ExtResource("7_jwhn4")]
 char_stats = ExtResource("4_h7eqq")

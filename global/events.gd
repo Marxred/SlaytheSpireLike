@@ -11,3 +11,8 @@ signal card_played(card: Card)
 ## 显示和隐藏卡牌提示
 signal card_tooltip_show(icon: Texture, text: String)
 signal card_tooltip_hide
+## 
+signal card_hand_drawn
+signal player_hand_discarded
+signal player_turn_ended
+

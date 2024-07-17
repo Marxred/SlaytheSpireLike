@@ -1,22 +1,25 @@
-[gd_scene load_steps=14 format=3 uid="uid://dx1hq3wq74h45"]
+[gd_scene load_steps=15 format=3 uid="uid://dx1hq3wq74h45"]
 
+[ext_resource type="Script" path="res://scenes/Battle/battle.gd" id="1_ewap5"]
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_ftft1"]
-[ext_resource type="PackedScene" uid="uid://5rfwhe3yc8r" path="res://scenes/CardUI/card_ui.tscn" id="2_8u0nx"]
 [ext_resource type="Script" path="res://scenes/ui/hand.gd" id="2_trssh"]
 [ext_resource type="PackedScene" uid="uid://boypommq6wly2" path="res://scenes/Player/player.tscn" id="3_6g48b"]
 [ext_resource type="PackedScene" uid="uid://d2bi3i6xprts6" path="res://scenes/Card_target_selector/card_target_selector.tscn" id="3_t5jut"]
 [ext_resource type="PackedScene" uid="uid://cm0v4acmo2hki" path="res://enemy/enemy.tscn" id="4_1r2fm"]
 [ext_resource type="Resource" uid="uid://crvnxavudc2bl" path="res://characters/warrior/warrior.tres" id="4_h7eqq"]
-[ext_resource type="Resource" uid="uid://11fgroipy5w6" path="res://characters/warrior/cards/warrior_axe_attack.tres" id="4_lrg8g"]
-[ext_resource type="Resource" uid="uid://b2c3t3wdx6pgd" path="res://characters/warrior/cards/warrior_block.tres" id="5_1i4g4"]
 [ext_resource type="Resource" uid="uid://bcekvtigj7dvn" path="res://enemies/carb/testEnemy.tres" id="5_xy1kj"]
 [ext_resource type="PackedScene" uid="uid://ocxwpo8h57ts" path="res://scenes/CardUI/mana_ui.tscn" id="7_jwhn4"]
 [ext_resource type="PackedScene" uid="uid://bfbc4ojvh1yoj" path="res://scenes/ui/Tooltip.tscn" id="8_l8ucd"]
+[ext_resource type="Script" path="res://scenes/Player/player_handler.gd" id="8_ncm58"]
+[ext_resource type="Script" path="res://scenes/Battle/battle_ui.gd" id="9_x1bxw"]
+[ext_resource type="Theme" uid="uid://celpuetiajyjm" path="res://scenes/CardUI/main_theme.tres" id="13_63phv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgawn"]
 size = Vector2(256, 100)
 
 [node name="Battle" type="Node2D"]
+script = ExtResource("1_ewap5")
+char_stats = ExtResource("4_h7eqq")
 metadata/_edit_lock_ = true
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -52,7 +55,12 @@ stats = ExtResource("5_xy1kj")
 [node name="CardTargetSelector" parent="." instance=ExtResource("3_t5jut")]
 position = Vector2(2, 142)
 
+[node name="PlayerHandler" type="Node" parent="." node_paths=PackedStringArray("hand")]
+script = ExtResource("8_ncm58")
+hand = NodePath("../BattleUI/Hand")
+
 [node name="BattleUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
+script = ExtResource("9_x1bxw")
 
 [node name="ManaUI" parent="BattleUI" instance=ExtResource("7_jwhn4")]
 char_stats = ExtResource("4_h7eqq")
@@ -76,17 +84,19 @@ grow_vertical = 0
 alignment = 1
 script = ExtResource("2_trssh")
 
-[node name="CardUI" parent="BattleUI/Hand" instance=ExtResource("2_8u0nx")]
-layout_mode = 2
-char_stats = ExtResource("4_h7eqq")
-card = ExtResource("4_lrg8g")
-
-[node name="CardUI2" parent="BattleUI/Hand" instance=ExtResource("2_8u0nx")]
-layout_mode = 2
-char_stats = ExtResource("4_h7eqq")
-card = ExtResource("5_1i4g4")
-
-[node name="CardUI3" parent="BattleUI/Hand" instance=ExtResource("2_8u0nx")]
-layout_mode = 2
-char_stats = ExtResource("4_h7eqq")
-card = ExtResource("4_lrg8g")
+[node name="EndTurnButton" type="Button" parent="BattleUI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -56.0
+offset_top = -21.0
+offset_right = -6.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("13_63phv")
+theme_override_font_sizes/font_size = 8
+text = "End Turn"
+alignment = 2

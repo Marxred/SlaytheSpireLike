@@ -11,4 +11,4 @@ type = 1
 target = 0
 cost = 1
 icon = ExtResource("1_iiolr")
-tooltip_text = ""
+tooltip_text = "add you two blocks"

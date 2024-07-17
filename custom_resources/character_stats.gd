@@ -11,13 +11,14 @@ var deck: CardPile
 var discard: CardPile
 var draw_pile: CardPile
 
+## 设置法力
 func set_mana(v: int)->void:
 	mana = v
 	stats_changed.emit()
-
+## 回复法力
 func reset_mana()->void:
 	mana = MAX_MANA
-
+## 检查该卡牌是否可以打出
 func can_play_card(card:Card)->bool:
 	return mana >= card.cost
 

@@ -6,7 +6,7 @@ extends Node2D
 @onready var stats_ui: StatsUI = $StatsUI
 
 func set_character_stats(v: CharacterStats)->void:
-	char_stats = v.new_instance()
+	char_stats = v
 	
 	if not char_stats.stats_changed.is_connected(update_stats):
 		char_stats.stats_changed.connect(update_stats)

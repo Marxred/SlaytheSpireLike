@@ -1,10 +1,25 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://celpuetiajyjm"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://celpuetiajyjm"]
 
 [ext_resource type="StyleBox" uid="uid://b0yrygcdf7biu" path="res://scenes/CardUI/card_base_stylebox.tres" id="1_ca0d1"]
 [ext_resource type="FontFile" uid="uid://dskmdk146n4rq" path="res://art/pixel_rpg.ttf" id="1_jojgw"]
+[ext_resource type="StyleBox" uid="uid://c4tk30pomj87j" path="res://scenes/CardUI/card_dragging_stylebox.tres" id="1_pyicb"]
+[ext_resource type="StyleBox" uid="uid://dg42wdp14yr1t" path="res://scenes/CardUI/card_hover_stylebox.tres" id="2_r7ere"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fesx"]
+bg_color = Color(0.0509804, 0.278431, 0.239216, 0.588235)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.819349, 0.794827, 0.782189, 1)
 
 [resource]
 default_font = ExtResource("1_jojgw")
 default_font_size = 6
+Button/styles/disabled = SubResource("StyleBoxFlat_1fesx")
+Button/styles/focus = ExtResource("2_r7ere")
+Button/styles/hover = ExtResource("2_r7ere")
+Button/styles/normal = ExtResource("1_ca0d1")
+Button/styles/pressed = ExtResource("1_pyicb")
 Panel/styles/panel = ExtResource("1_ca0d1")
 PanelContainer/styles/panel = ExtResource("1_ca0d1")

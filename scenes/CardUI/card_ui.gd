@@ -61,7 +61,7 @@ func on_card_drag_or_aiming_started(used_card: CardUI)->void:
 		return
 	disabled = true
 
-func on_card_drag_or_aiming_ended(used_card: CardUI)->void:
+func on_card_drag_or_aiming_ended(_used_card: CardUI)->void:
 	disabled = false
 	self.playable = char_stats.can_play_card(card)
 

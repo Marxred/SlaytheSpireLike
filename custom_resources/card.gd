@@ -12,7 +12,10 @@ enum Target{SELF, SINGLE_ENEMY, ALL_ENEMY, EVERYONE}
 
 @export_category("Card Visuals")
 @export var icon: Texture
-@export_multiline var tooltip_text:String
+@export_multiline var tooltip_text:String:set = _set_tooltip_text
+func _set_tooltip_text(v: String)->void:
+	tooltip_text = v
+
 
 func is_single_targeted()-> bool :
 	return Target.SINGLE_ENEMY == target
@@ -41,5 +44,5 @@ func play(targets: Array[Node], char_stats: CharacterStats)->void:
 	else:
 		apply_effects(get_targets(targets))
 
-func apply_effects(targets: Array[Node])->void:
+func apply_effects(_targets: Array[Node])->void:
 	pass

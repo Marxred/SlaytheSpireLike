@@ -53,7 +53,7 @@ func _on_card_aim_started(card:CardUI)->void:
 	area_2d.monitoring = true
 	current_card = card
 ## 退出瞄准状态
-func _on_card_aim_ended(card:CardUI)->void:
+func _on_card_aim_ended(_card:CardUI)->void:
 	targeting = false
 	area_2d.monitorable = false
 	area_2d.monitoring = false

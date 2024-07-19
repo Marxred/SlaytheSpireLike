@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bob4hkv8hsdo3"]
+
+[ext_resource type="Script" path="res://scenes/Enemy/enemy_action_picker.gd" id="1_ru0r7"]
+[ext_resource type="Script" path="res://enemies/carb/carb_attack_action.gd" id="2_mlbch"]
+[ext_resource type="Script" path="res://enemies/carb/crab_block_action.gd" id="3_vdkqv"]
+[ext_resource type="Script" path="res://enemies/carb/carb_megablock_action.gd" id="4_cvdux"]
+
+[node name="CrabActionPicker" type="Node"]
+script = ExtResource("1_ru0r7")
+
+[node name="AttackAction" type="Node" parent="."]
+script = ExtResource("2_mlbch")
+damage = 3
+type = 1
+chance_weight = 3.0
+
+[node name="BlockAction" type="Node" parent="."]
+script = ExtResource("3_vdkqv")
+type = 1
+chance_weight = 1.0
+
+[node name="MegaBlockAction" type="Node" parent="."]
+script = ExtResource("4_cvdux")

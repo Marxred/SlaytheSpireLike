@@ -11,7 +11,7 @@ var cards_played_this_turn: int = 0
 func _ready() -> void:
 	Events.card_played.connect(on_card_played)
 
-func on_card_played(card: Card)->void:
+func on_card_played(_card: Card)->void:
 	cards_played_this_turn += 1
 
 func discard_card(card: CardUI)->void:

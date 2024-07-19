@@ -4,7 +4,7 @@ extends PanelContainer
 
 var fade_time: float = 0.1
 var buffer_time: float = 0.1
-var is_visible: bool = false
+var can_visible: bool = false
 var tween: Tween
 
 
@@ -22,9 +22,10 @@ func _ready() -> void:
 func show_tooltip(icon: Texture, description: String)->void:
 	tooltip_icon.texture = icon
 	tooltip_text_label.text = description
-	is_visible = true
+	can_visible = true
 	show_ani()
 	print("DB show_tooltip")
+
 
 func show_ani()->void:
 	if tween:
@@ -37,13 +38,13 @@ func show_ani()->void:
 
 #隐藏注释
 func hide_tooltip()->void:
-	is_visible = false
+	can_visible = false
 	get_tree().create_timer(buffer_time, false).timeout.connect(hide_ani)
 	print("DB hide_tooltip")
 
 func hide_ani()->void:
 	
-	if is_visible:
+	if can_visible:
 		return
 	if tween:
 		tween.kill()

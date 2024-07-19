@@ -5,10 +5,10 @@
 
 [resource]
 script = ExtResource("2_yoycw")
-amounts = 2
+amounts = 3
 id = "warrior_axe_attack"
 type = 0
 target = 1
-cost = 2
+cost = 1
 icon = ExtResource("1_adnnw")
 tooltip_text = "two normal damages"

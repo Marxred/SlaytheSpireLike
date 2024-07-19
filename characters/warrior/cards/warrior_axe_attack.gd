@@ -1,6 +1,13 @@
 extends Card
 
-@export var amounts: int = 0
+@export var amounts: int = 0:set =  _set_amounts
+
+func _set_amounts(v: int):
+	amounts = v
+
+func _set_tooltip_text(v: String)->void:
+	super(v)
+	tooltip_text = "deals " + str(amounts) + " damage"
 
 func apply_effects(targets)->void:
 	super(targets)

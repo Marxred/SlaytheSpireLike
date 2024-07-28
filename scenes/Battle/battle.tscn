@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dx1hq3wq74h45"]
+[gd_scene load_steps=17 format=3 uid="uid://dx1hq3wq74h45"]
 
 [ext_resource type="Script" path="res://scenes/Battle/battle.gd" id="1_ewap5"]
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_ftft1"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bfbc4ojvh1yoj" path="res://scenes/ui/Tooltip.tscn" id="8_l8ucd"]
 [ext_resource type="Script" path="res://scenes/Player/player_handler.gd" id="8_ncm58"]
 [ext_resource type="Script" path="res://scenes/Battle/battle_ui.gd" id="9_x1bxw"]
+[ext_resource type="Script" path="res://scenes/Battle/red_flash.gd" id="10_wq7ki"]
 [ext_resource type="Theme" uid="uid://celpuetiajyjm" path="res://scenes/CardUI/main_theme.tres" id="13_63phv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgawn"]
@@ -33,34 +34,54 @@ metadata/_edit_lock_ = true
 modulate = Color(1, 0.294118, 1, 0.611765)
 position = Vector2(128, 50)
 collision_layer = 2
+metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CardDropArea"]
 shape = SubResource("RectangleShape2D_vgawn")
 
+[node name="CardTargetSelector" parent="." instance=ExtResource("3_t5jut")]
+position = Vector2(2, 142)
+metadata/_edit_lock_ = true
+
 [node name="Player" parent="." instance=ExtResource("3_6g48b")]
 position = Vector2(56, 76)
+
+[node name="PlayerHandler" type="Node" parent="." node_paths=PackedStringArray("hand")]
+script = ExtResource("8_ncm58")
+hand = NodePath("../BattleUI/Hand")
 
 [node name="EnemyHandler" type="Node2D" parent="."]
 script = ExtResource("5_a0wwb")
 
 [node name="Enemy" parent="EnemyHandler" instance=ExtResource("4_1r2fm")]
-position = Vector2(219, 77)
+position = Vector2(228, 77)
 stats = ExtResource("7_s277e")
 
 [node name="Enemy2" parent="EnemyHandler" instance=ExtResource("4_1r2fm")]
-position = Vector2(174, 77)
+position = Vector2(144, 78)
 stats = ExtResource("7_s277e")
 
 [node name="Enemy3" parent="EnemyHandler" instance=ExtResource("4_1r2fm")]
-position = Vector2(197, 44)
+position = Vector2(184, 36)
 stats = ExtResource("7_s277e")
 
-[node name="CardTargetSelector" parent="." instance=ExtResource("3_t5jut")]
-position = Vector2(2, 142)
+[node name="RedFlash" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+script = ExtResource("10_wq7ki")
 
-[node name="PlayerHandler" type="Node" parent="." node_paths=PackedStringArray("hand")]
-script = ExtResource("8_ncm58")
-hand = NodePath("../BattleUI/Hand")
+[node name="ColorRect" type="ColorRect" parent="RedFlash"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.484553, 0.157034, 0.160994, 0.227451)
+
+[node name="Timer" type="Timer" parent="RedFlash"]
+wait_time = 0.1
+one_shot = true
 
 [node name="BattleUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
 script = ExtResource("9_x1bxw")

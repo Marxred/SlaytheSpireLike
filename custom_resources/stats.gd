@@ -35,7 +35,7 @@ func heal(amount: int)->void:
 
 
 func new_instance()->Stats:
-	var instance: Stats = self.duplicate()
+	var instance: Stats = self.duplicate(true)
 	instance.health = MAX_HEALTH
 	instance.block = init_block
 	return instance

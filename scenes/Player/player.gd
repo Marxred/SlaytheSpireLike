@@ -26,11 +26,26 @@ func update_player()->void:
 func update_stats()->void:
 	stats_ui.update_stats(stats)
 
+
+const WHITE_SPRITE_MATERIAL = preload("res://art/white_sprite_material.tres")
 func take_damage(damage: int)->void:
 	if stats.health <= 0:
 		return
-	stats.take_damage(damage)
+	#stats.take_damage(damage)
+	#
+	#if stats.health <= 0:
+		#Events.player_died.emit()
+		#queue_free()
 	
-	if stats.health <= 0:
-		Events.player_died.emit()
-		queue_free()
+	sprite_2d.material = WHITE_SPRITE_MATERIAL;
+	var tween: Tween= create_tween()
+	tween.tween_callback(Shaker.shake.bind(self, 16, 0.15))
+	tween.tween_callback(stats.take_damage.bind(damage))
+	tween.tween_interval(0.16)
+	tween.finished.connect(
+		func()->void:
+			sprite_2d.material = null;
+			if stats.health <= 0:
+				Events.player_died.emit()
+				queue_free()
+	)

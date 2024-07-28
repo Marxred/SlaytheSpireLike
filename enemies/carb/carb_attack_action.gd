@@ -2,6 +2,7 @@ extends EnemyAction
 
 @export var damage: int = 7
 
+
 func perform_action()->void:
 	super()
 	if not enemy or not target:

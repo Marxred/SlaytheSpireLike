@@ -1,7 +1,8 @@
-[gd_resource type="Resource" load_steps=3 format=3 uid="uid://b2c3t3wdx6pgd"]
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://b2c3t3wdx6pgd"]
 
 [ext_resource type="Script" path="res://characters/warrior/cards/warrior_block.gd" id="1_a2vga"]
 [ext_resource type="Texture2D" uid="uid://oe7v35ii8vrs" path="res://art/tile_0102.png" id="1_iiolr"]
+[ext_resource type="AudioStream" uid="uid://df64e7qat73gs" path="res://art/block.ogg" id="3_m6tiu"]
 
 [resource]
 script = ExtResource("1_a2vga")
@@ -10,5 +11,6 @@ id = "warrior_block"
 type = 1
 target = 0
 cost = 1
+sfx = ExtResource("3_m6tiu")
 icon = ExtResource("1_iiolr")
 tooltip_text = "add you two blocks"

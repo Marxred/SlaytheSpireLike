@@ -13,4 +13,5 @@ func apply_effects(targets)->void:
 	super(targets)
 	var block_effect:= BlockEffect.new()
 	block_effect.amounts = amounts
+	block_effect.sfx = self.sfx
 	block_effect.execute(targets)

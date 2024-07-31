@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://dx1hq3wq74h45"]
+[gd_scene load_steps=19 format=3 uid="uid://dx1hq3wq74h45"]
 
 [ext_resource type="Script" path="res://scenes/Battle/battle.gd" id="1_ewap5"]
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_ftft1"]
 [ext_resource type="Script" path="res://scenes/ui/hand.gd" id="2_trssh"]
+[ext_resource type="AudioStream" uid="uid://dpdenqqbovwfq" path="res://art/8_bit_iced_village_lofi.mp3" id="3_1bbtj"]
 [ext_resource type="PackedScene" uid="uid://boypommq6wly2" path="res://scenes/Player/player.tscn" id="3_6g48b"]
 [ext_resource type="PackedScene" uid="uid://d2bi3i6xprts6" path="res://scenes/Card_target_selector/card_target_selector.tscn" id="3_t5jut"]
 [ext_resource type="PackedScene" uid="uid://cm0v4acmo2hki" path="res://enemy/enemy.tscn" id="4_1r2fm"]
@@ -15,6 +16,7 @@
 [ext_resource type="Script" path="res://scenes/Battle/battle_ui.gd" id="9_x1bxw"]
 [ext_resource type="Script" path="res://scenes/Battle/red_flash.gd" id="10_wq7ki"]
 [ext_resource type="Theme" uid="uid://celpuetiajyjm" path="res://scenes/CardUI/main_theme.tres" id="13_63phv"]
+[ext_resource type="PackedScene" uid="uid://bsccvqqccru10" path="res://scenes/ui/battle_over_panel.tscn" id="17_tkfc8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgawn"]
 size = Vector2(256, 100)
@@ -22,6 +24,7 @@ size = Vector2(256, 100)
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_ewap5")
 char_stats = ExtResource("4_h7eqq")
+background = ExtResource("3_1bbtj")
 metadata/_edit_lock_ = true
 
 [node name="Background" type="Sprite2D" parent="."]
@@ -55,14 +58,6 @@ script = ExtResource("5_a0wwb")
 
 [node name="Enemy" parent="EnemyHandler" instance=ExtResource("4_1r2fm")]
 position = Vector2(228, 77)
-stats = ExtResource("7_s277e")
-
-[node name="Enemy2" parent="EnemyHandler" instance=ExtResource("4_1r2fm")]
-position = Vector2(144, 78)
-stats = ExtResource("7_s277e")
-
-[node name="Enemy3" parent="EnemyHandler" instance=ExtResource("4_1r2fm")]
-position = Vector2(184, 36)
 stats = ExtResource("7_s277e")
 
 [node name="RedFlash" type="CanvasLayer" parent="."]
@@ -125,5 +120,10 @@ theme = ExtResource("13_63phv")
 theme_override_font_sizes/font_size = 8
 text = "End Turn"
 alignment = 2
+
+[node name="BattleOverLayer" type="CanvasLayer" parent="."]
+
+[node name="BattleOverPanel" parent="BattleOverLayer" instance=ExtResource("17_tkfc8")]
+visible = false
 
 [connection signal="child_order_changed" from="EnemyHandler" to="." method="_on_enemy_handler_child_order_changed"]

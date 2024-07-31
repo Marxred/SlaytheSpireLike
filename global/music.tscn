@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0p15a2stp1kj"]
+
+[ext_resource type="Script" path="res://global/sound_manager.gd" id="1_j7uou"]
+[ext_resource type="AudioStream" uid="uid://dpdenqqbovwfq" path="res://art/8_bit_iced_village_lofi.mp3" id="1_r3wrv"]
+
+[node name="Music" type="Node"]
+process_mode = 3
+script = ExtResource("1_j7uou")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_r3wrv")
+bus = &"Music"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="."]
+bus = &"Music"

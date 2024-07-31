@@ -1,4 +1,4 @@
-## 全局加载 管理总事件
+## 全局加载 管理所有事件，统一处理事件，所有场景均可使用
 
 extends Node
 ## 状态转换
@@ -15,8 +15,11 @@ signal card_tooltip_hide
 signal card_hand_drawn
 signal player_hand_discarded
 signal player_turn_ended
+##
 signal player_hited
 signal player_died
-
+##
 signal enemy_action_completed(enemy:Enemy)
 signal enemy_trun_ended
+##
+signal battle_over_requested(text: String, type:BattleOverPanel.TYPE)

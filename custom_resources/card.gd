@@ -9,6 +9,7 @@ enum Target{SELF, SINGLE_ENEMY, ALL_ENEMY, EVERYONE}
 @export var type: Type 
 @export var target: Target
 @export var cost: int
+@export var sfx: AudioStream
 
 @export_category("Card Visuals")
 @export var icon: Texture

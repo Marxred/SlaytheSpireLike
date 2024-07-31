@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 
 Events="*res://global/events.gd"
 Shaker="*res://global/shaker.gd"
+Music="*res://global/music.tscn"
+Sfx="*res://global/sfx.tscn"
 
 [display]
 
@@ -51,6 +53,10 @@ right_mouse={
 2d_physics/layer_1="CardTargetSelector"
 2d_physics/layer_2="CardDropArea"
 2d_physics/layer_3="Enemy"
+
+[physics]
+
+2d/run_on_separate_thread=true
 
 [rendering]
 

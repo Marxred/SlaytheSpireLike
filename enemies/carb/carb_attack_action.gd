@@ -13,6 +13,7 @@ func perform_action()->void:
 	var end: Vector2 = target.global_position + Vector2.RIGHT* 32
 	var damage_effect:= DamageEffect.new()
 	damage_effect.amounts = damage
+	damage_effect.sfx = sfx
 	var target_array: Array[Node] = [target]
 	
 	tween.tween_property(enemy, "global_position", end, 0.2)

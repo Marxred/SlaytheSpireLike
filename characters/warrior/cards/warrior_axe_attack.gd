@@ -13,4 +13,5 @@ func apply_effects(targets)->void:
 	super(targets)
 	var damage_effect:= DamageEffect.new()
 	damage_effect.amounts = amounts
+	damage_effect.sfx = sfx
 	damage_effect.execute(targets)

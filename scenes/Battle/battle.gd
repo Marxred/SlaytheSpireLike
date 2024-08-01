@@ -24,6 +24,7 @@ func _ready() -> void:
 	start_battle(new_stats)
 
 func start_battle(_char_stats: CharacterStats)->void:
+	player.update_player()
 	print("battle started!")
 	#enemy_handler.reset_enemy_actions()
 	Music.play(background, true)

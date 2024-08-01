@@ -1,0 +1,16 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://cvxbjp1bvybav"]
+
+[ext_resource type="Script" path="res://characters/warrior/cards/warrior_double_axe_attack.gd" id="1_d8jcc"]
+[ext_resource type="Texture2D" uid="uid://cqcal03735mv8" path="res://art/tile_0118.png" id="1_ghbin"]
+[ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://art/slash.ogg" id="2_4kc5q"]
+
+[resource]
+script = ExtResource("1_d8jcc")
+amounts = 3
+id = "warrior_double_axe_attack"
+type = 0
+target = 2
+cost = 2
+sfx = ExtResource("2_4kc5q")
+icon = ExtResource("1_ghbin")
+tooltip_text = ""

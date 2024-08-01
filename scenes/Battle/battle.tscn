@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dx1hq3wq74h45"]
+[gd_scene load_steps=20 format=3 uid="uid://dx1hq3wq74h45"]
 
 [ext_resource type="Script" path="res://scenes/Battle/battle.gd" id="1_ewap5"]
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_ftft1"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://scenes/Player/player_handler.gd" id="8_ncm58"]
 [ext_resource type="Script" path="res://scenes/Battle/battle_ui.gd" id="9_x1bxw"]
 [ext_resource type="Script" path="res://scenes/Battle/red_flash.gd" id="10_wq7ki"]
+[ext_resource type="Resource" uid="uid://o4psp5dwisw1" path="res://enemies/bat/bat_enemy.tres" id="11_35nae"]
 [ext_resource type="Theme" uid="uid://celpuetiajyjm" path="res://scenes/CardUI/main_theme.tres" id="13_63phv"]
 [ext_resource type="PackedScene" uid="uid://bsccvqqccru10" path="res://scenes/ui/battle_over_panel.tscn" id="17_tkfc8"]
 
@@ -49,16 +50,20 @@ metadata/_edit_lock_ = true
 [node name="Player" parent="." instance=ExtResource("3_6g48b")]
 position = Vector2(56, 76)
 
-[node name="PlayerHandler" type="Node" parent="." node_paths=PackedStringArray("hand")]
-script = ExtResource("8_ncm58")
-hand = NodePath("../BattleUI/Hand")
-
 [node name="EnemyHandler" type="Node2D" parent="."]
 script = ExtResource("5_a0wwb")
 
 [node name="Enemy" parent="EnemyHandler" instance=ExtResource("4_1r2fm")]
-position = Vector2(228, 77)
+position = Vector2(153, 77)
 stats = ExtResource("7_s277e")
+
+[node name="Enemy2" parent="EnemyHandler" instance=ExtResource("4_1r2fm")]
+position = Vector2(190, 47)
+stats = ExtResource("7_s277e")
+
+[node name="Enemy3" parent="EnemyHandler" instance=ExtResource("4_1r2fm")]
+position = Vector2(228, 77)
+stats = ExtResource("11_35nae")
 
 [node name="RedFlash" type="CanvasLayer" parent="."]
 layer = 2
@@ -77,6 +82,10 @@ color = Color(0.484553, 0.157034, 0.160994, 0.227451)
 [node name="Timer" type="Timer" parent="RedFlash"]
 wait_time = 0.1
 one_shot = true
+
+[node name="PlayerHandler" type="Node" parent="." node_paths=PackedStringArray("hand")]
+script = ExtResource("8_ncm58")
+hand = NodePath("../BattleUI/Hand")
 
 [node name="BattleUI" type="CanvasLayer" parent="." groups=["ui_layer"]]
 script = ExtResource("9_x1bxw")

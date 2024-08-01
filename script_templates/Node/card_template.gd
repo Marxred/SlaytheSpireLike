@@ -1,3 +1,8 @@
+# meta-name: 卡牌模板
+# meta-description: 卡牌模板
+# meta-default: false
+# meta-space-indent: 4
+
 extends Card
 
 @export var amounts: int = 0:set =  _set_amounts
@@ -7,7 +12,7 @@ func _set_amounts(v: int):
 
 func _set_tooltip_text(v: String)->void:
 	super(v)
-	tooltip_text = "deals " + str(amounts) + " damages"
+	tooltip_text = "deals " + str(amounts) + " damage"
 
 func apply_effects(targets)->void:
 	super(targets)

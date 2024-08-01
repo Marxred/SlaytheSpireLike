@@ -1,5 +1,7 @@
+## 子节点挂载EnemyAction，无需修改，仅修改子节点EnemyAction具体实现
 class_name EnemyActionPicker
 extends Node
+
 
 @export var enemy: Enemy: set = _set_enemy
 func _set_enemy(v: Enemy)->void:
@@ -13,8 +15,8 @@ func _set_target(v: Node2D)->void:
 	for action: EnemyAction in get_children():
 		action.target = target
 
-@onready var total_weight: float = 0.0
 
+@onready var total_weight: float = 0.0
 
 func _ready() -> void:
 	target = get_tree().get_first_node_in_group("player")

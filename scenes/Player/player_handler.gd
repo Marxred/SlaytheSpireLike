@@ -52,7 +52,7 @@ func discard_cards()->void:
 		Events.player_hand_discarded.emit()
 		return
 	var tween: Tween = create_tween()
-
+	
 	for card_ui:CardUI in hand.get_children():
 		tween.tween_callback(character.discard.add_card.bind(card_ui.card))
 		tween.tween_callback(hand.discard_card.bind(card_ui))

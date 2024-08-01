@@ -9,6 +9,7 @@ enum TYPE{WIN,LOSE}
 
 func _ready() -> void:
 	hide()
+	get_tree().paused = false
 	resume.pressed.connect(get_tree().reload_current_scene)
 	quit.pressed.connect(get_tree().quit)
 	Events.battle_over_requested.connect(show_panel)

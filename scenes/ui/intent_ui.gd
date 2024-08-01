@@ -10,5 +10,5 @@ func _update_intent(intent: Intent)->void:
 		hide()
 		return
 	icon.texture = intent.icon
-	text.text = str(intent.number)
+	text.text = intent.number
 	show()

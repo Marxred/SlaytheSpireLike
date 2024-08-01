@@ -10,5 +10,5 @@ starting_deck = ExtResource("2_qiepg")
 cards_per_turn = 4
 MAX_MANA = 3
 init_block = 12
-MAX_HEALTH = 6
+MAX_HEALTH = 24
 ART = ExtResource("1_c1bml")

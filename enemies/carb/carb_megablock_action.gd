@@ -10,8 +10,6 @@ func is_performable()->bool:
 		return false
 	
 	var is_low:= enemy.stats.health < hp_threshold
-	already_used = is_low
-	
 	return is_low
 
 func perform_action()->void:
@@ -24,7 +22,9 @@ func perform_action()->void:
 	block_effect.sfx = sfx
 	block_effect.execute([enemy])
 	
+	
 	get_tree().create_timer(0.6, false).timeout.connect(
 		func():
+			already_used = true
 			Events.enemy_action_completed.emit(enemy)
 	)

@@ -47,6 +47,4 @@ sfx = ExtResource("8_wy0xw")
 [node name="MegaBlockAction" type="Node" parent="."]
 script = ExtResource("4_cvdux")
 intent = SubResource("Resource_rl5m5")
-type = null
-chance_weight = null
 sfx = ExtResource("8_wy0xw")

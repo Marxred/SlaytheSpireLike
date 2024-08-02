@@ -22,7 +22,6 @@ func perform_action()->void:
 	block_effect.sfx = sfx
 	block_effect.execute([enemy])
 	
-	
 	get_tree().create_timer(0.6, false).timeout.connect(
 		func():
 			already_used = true

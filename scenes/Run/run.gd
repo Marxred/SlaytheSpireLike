@@ -2,16 +2,10 @@ class_name Run
 extends Node
 
 @export var run_setup: RunStartup
+var char_stats:CharacterStats
 
-const BATTLE_REWARD = preload("res://scenes/Map/battle_reward.tscn")
-const CAMPFIRE = preload("res://scenes/Map/campfire.tscn")
-const MAP = preload("res://scenes/Map/map.tscn")
-const SHOP = preload("res://scenes/Map/shop.tscn")
-const TREASURE_ROOM = preload("res://scenes/Map/treasure_room.tscn")
-const BATTLE = preload("res://scenes/Battle/battle.tscn")
 
 var current_view_child:PackedScene:set = set_current_view_child
-
 func set_current_view_child(scene:PackedScene)->void:
 	if current_view.get_child_count() > 0:
 		for i in current_view.get_children():
@@ -26,8 +20,15 @@ func set_current_view_child(scene:PackedScene)->void:
 @onready var battle: Button = $Debug/Battle
 @onready var battle_reward: Button = $Debug/BattleReward
 @onready var treasure_room: Button = $Debug/TreasureRoom
+@onready var card_pile_opener: CardPileOpener = $TopBar/HBoxContainer/CardPileOpener
+@onready var card_pile_preview: Control = $TopBar/CardPilePreview
 
-var char_stats:CharacterStats
+const BATTLE_REWARD = preload("res://scenes/Map/battle_reward.tscn")
+const CAMPFIRE = preload("res://scenes/Map/campfire.tscn")
+const MAP = preload("res://scenes/Map/map.tscn")
+const SHOP = preload("res://scenes/Map/shop.tscn")
+const TREASURE_ROOM = preload("res://scenes/Map/treasure_room.tscn")
+const BATTLE = preload("res://scenes/Battle/battle.tscn")
 
 func _ready() -> void:
 	if not run_setup:
@@ -43,6 +44,7 @@ func _ready() -> void:
 
 func _start_run()->void:
 	setup_events_connections()
+	setup_top_bar()
 	print_debug("TODO: procedurally generate map")
 
 func setup_events_connections()->void:
@@ -52,6 +54,10 @@ func setup_events_connections()->void:
 	Events.battle_reward_exited.connect(set_current_view_child.bind(MAP))
 	Events.battle_won.connect(set_current_view_child.bind(BATTLE_REWARD))
 	Events.treasure_room_exited.connect(set_current_view_child.bind(MAP))
+
+func setup_top_bar()->void:
+	card_pile_opener.cardpile = char_stats.deck
+
 
 func _on_map_exited()->void:
 	print_debug("map exited")

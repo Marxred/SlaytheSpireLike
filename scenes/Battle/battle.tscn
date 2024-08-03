@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dx1hq3wq74h45"]
+[gd_scene load_steps=23 format=3 uid="uid://dx1hq3wq74h45"]
 
 [ext_resource type="Script" path="res://scenes/Battle/battle.gd" id="1_ewap5"]
 [ext_resource type="Texture2D" uid="uid://cp4iq5fd6j8be" path="res://art/background.png" id="1_ftft1"]
@@ -18,6 +18,9 @@
 [ext_resource type="Resource" uid="uid://o4psp5dwisw1" path="res://enemies/bat/bat_enemy.tres" id="11_35nae"]
 [ext_resource type="Theme" uid="uid://celpuetiajyjm" path="res://scenes/CardUI/main_theme.tres" id="13_63phv"]
 [ext_resource type="PackedScene" uid="uid://bsccvqqccru10" path="res://scenes/ui/battle_over_panel.tscn" id="17_tkfc8"]
+[ext_resource type="PackedScene" uid="uid://rg8yj4s80axv" path="res://scenes/ui/card_pile_opener.tscn" id="18_rp8u4"]
+[ext_resource type="Texture2D" uid="uid://b4bdngno77f18" path="res://art/draw.png" id="19_tq4qx"]
+[ext_resource type="Texture2D" uid="uid://dor4h5aba4hyl" path="res://art/discard.png" id="20_y085c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgawn"]
 size = Vector2(256, 100)
@@ -91,6 +94,11 @@ hand = NodePath("../BattleUI/Hand")
 script = ExtResource("9_x1bxw")
 
 [node name="ManaUI" parent="BattleUI" instance=ExtResource("7_jwhn4")]
+custom_minimum_size = Vector2(18, 18)
+offset_left = 6.0
+offset_top = -43.0
+offset_right = 24.0
+offset_bottom = -25.0
 char_stats = ExtResource("4_h7eqq")
 
 [node name="Tooltip" parent="BattleUI" instance=ExtResource("8_l8ucd")]
@@ -114,23 +122,41 @@ alignment = 1
 script = ExtResource("2_trssh")
 
 [node name="EndTurnButton" type="Button" parent="BattleUI"]
+custom_minimum_size = Vector2(36, 12)
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -56.0
-offset_top = -21.0
-offset_right = -6.0
-offset_bottom = -5.0
+offset_left = -37.0
+offset_top = -39.0
+offset_right = -1.0
+offset_bottom = -27.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("13_63phv")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 6
 text = "End Turn"
 alignment = 2
 
+[node name="DrawCardPile" parent="BattleUI" instance=ExtResource("18_rp8u4")]
+offset_left = -122.0
+offset_top = 122.0
+offset_right = -104.0
+offset_bottom = 140.0
+texture_normal = ExtResource("19_tq4qx")
+title = "DrawCardPile"
+
+[node name="DiscardCardPile" parent="BattleUI" instance=ExtResource("18_rp8u4")]
+offset_left = 102.0
+offset_top = 122.0
+offset_right = 120.0
+offset_bottom = 140.0
+texture_normal = ExtResource("20_y085c")
+title = "DiscardCardPile"
+
 [node name="BattleOverLayer" type="CanvasLayer" parent="."]
+layer = 2
 
 [node name="BattleOverPanel" parent="BattleOverLayer" instance=ExtResource("17_tkfc8")]
 visible = false

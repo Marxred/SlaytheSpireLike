@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://efg0ke80cwso"]
+
+[ext_resource type="StyleBox" uid="uid://b0yrygcdf7biu" path="res://scenes/CardUI/card_base_stylebox.tres" id="1_hx1kq"]
+[ext_resource type="Script" path="res://scenes/ui/card_menu_ui.gd" id="1_jrks6"]
+[ext_resource type="Texture2D" uid="uid://bb3rcs5nqntir" path="res://art/arrow.png" id="2_vjkc0"]
+
+[node name="CardMenuUI" type="CenterContainer"]
+custom_minimum_size = Vector2(42, 42)
+offset_right = 42.0
+offset_bottom = 42.0
+script = ExtResource("1_jrks6")
+
+[node name="Control" type="Control" parent="."]
+custom_minimum_size = Vector2(25, 30)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Control"]
+custom_minimum_size = Vector2(25, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_styles/panel = ExtResource("1_hx1kq")
+
+[node name="Icon" type="TextureRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -8.5
+offset_top = -7.0
+offset_right = 7.5
+offset_bottom = 9.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_vjkc0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Cost" type="Label" parent="Control"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 1
+offset_left = 2.0
+offset_top = 3.0
+offset_right = 7.0
+offset_bottom = 9.0
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 1
+
+[connection signal="gui_input" from="Control" to="." method="_on_control_gui_input"]
+[connection signal="mouse_entered" from="Control" to="." method="_on_control_mouse_entered"]
+[connection signal="mouse_exited" from="Control" to="." method="_on_control_mouse_exited"]

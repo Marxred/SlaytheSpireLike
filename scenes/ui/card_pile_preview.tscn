@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://3d3teb3hi32d"]
+
+[ext_resource type="Theme" uid="uid://celpuetiajyjm" path="res://scenes/CardUI/main_theme.tres" id="1_clv0b"]
+[ext_resource type="Script" path="res://scenes/ui/card_pile_preview.gd" id="1_dusn3"]
+[ext_resource type="PackedScene" uid="uid://efg0ke80cwso" path="res://scenes/ui/card_menu_ui.tscn" id="1_mhcm5"]
+[ext_resource type="PackedScene" uid="uid://c6si2e8md1ole" path="res://scenes/ui/card_preview_tool_tip.tscn" id="4_ig8c8"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_pda7m"]
+font_size = 14
+shadow_size = 2
+shadow_color = Color(0, 0, 0, 0.647059)
+
+[node name="CardPilePreview" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dusn3")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.152941, 0.152941, 0.152941, 0.411765)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Title"
+label_settings = SubResource("LabelSettings_pda7m")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("1_clv0b")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = -4
+theme_override_constants/v_separation = -2
+columns = 5
+
+[node name="CardMenuUI" parent="MarginContainer/VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("1_mhcm5")]
+layout_mode = 2
+
+[node name="CardMenuUI2" parent="MarginContainer/VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("1_mhcm5")]
+layout_mode = 2
+
+[node name="CardPreviewToolTip" parent="." instance=ExtResource("4_ig8c8")]
+visible = false
+layout_mode = 1
+tooltip_text = "words test"
+
+[node name="BackButton" type="Button" parent="."]
+custom_minimum_size = Vector2(32, 14)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -35.0
+offset_top = 3.0
+offset_right = -3.0
+offset_bottom = 17.0
+grow_horizontal = 0
+text = "Back"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]

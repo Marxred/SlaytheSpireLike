@@ -9,6 +9,7 @@ extends Node2D
 @onready var enemy_handler: EnemyHandler = $EnemyHandler
 @onready var player_handler: PlayerHandler = $PlayerHandler
 
+
 func _ready() -> void:
 #	直接赋值char_stats用于debug，之后需要改变
 	var new_stats: CharacterStats = char_stats.new_instance()
@@ -16,12 +17,12 @@ func _ready() -> void:
 	player.stats = new_stats
 
 	Events.enemy_trun_ended.connect(_on_enemy_trun_ended)
-
 	Events.player_turn_ended.connect(player_handler.end_turn)
 	Events.player_hand_discarded.connect(enemy_handler.start_turn)
 	Events.player_died.connect(_on_player_died)
 
 	start_battle(new_stats)
+	battle_ui.initialize_card_pile_ui()
 
 func start_battle(_char_stats: CharacterStats)->void:
 	print("battle started!")

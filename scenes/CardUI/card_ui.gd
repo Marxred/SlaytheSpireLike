@@ -4,9 +4,22 @@ extends Control
 signal reparent_requested(which_card_ui: CardUI)
 
 
-const BASE_STYLE = preload("res://scenes/CardUI/card_base_stylebox.tres")
-const DARGGING_STYLE = preload("res://scenes/CardUI/card_dragging_stylebox.tres")
-const HOVER_STYLE = preload("res://scenes/CardUI/card_hover_stylebox.tres")
+@export var char_stats: CharacterStats: set = set_char_stats
+func set_char_stats(v: CharacterStats)->void:
+	char_stats = v
+	char_stats.stats_changed.connect(self.on_char_stats_changed)
+
+func on_char_stats_changed()->void:
+	self.playable = char_stats.can_play_card(card)
+
+@export var card: Card: set= set_card
+func set_card(v:Card)->void:
+	if not is_node_ready():
+		await self.ready
+	card = v
+	cost.text = str(card.cost)
+	icon.texture = card.icon
+
 var parent:Control
 var tween: Tween
 var disabled: bool= false
@@ -23,23 +36,9 @@ func set_playable(v: bool)->void:
 		icon.modulate.a = 1
 
 
-@export var char_stats: CharacterStats: set = set_char_stats
-func set_char_stats(v: CharacterStats)->void:
-	char_stats = v
-	char_stats.stats_changed.connect(self.on_char_stats_changed)
-
-func on_char_stats_changed()->void:
-	self.playable = char_stats.can_play_card(card)
-
-
-@export var card: Card: set= set_card
-func set_card(v:Card)->void:
-	if not is_node_ready():
-		await self.ready
-	card = v
-	cost.text = str(card.cost)
-	icon.texture = card.icon
-
+const BASE_STYLE = preload("res://scenes/CardUI/card_base_stylebox.tres")
+const DARGGING_STYLE = preload("res://scenes/CardUI/card_dragging_stylebox.tres")
+const HOVER_STYLE = preload("res://scenes/CardUI/card_hover_stylebox.tres")
 
 @onready var drop_point_detector: Area2D = $DropPointDetector
 @onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine

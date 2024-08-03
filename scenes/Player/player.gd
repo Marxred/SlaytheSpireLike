@@ -31,11 +31,6 @@ const WHITE_SPRITE_MATERIAL = preload("res://art/white_sprite_material.tres")
 func take_damage(damage: int)->void:
 	if stats.health <= 0:
 		return
-	#stats.take_damage(damage)
-	#
-	#if stats.health <= 0:
-		#Events.player_died.emit()
-		#queue_free()
 
 	sprite_2d.material = WHITE_SPRITE_MATERIAL;
 	var tween: Tween= create_tween()

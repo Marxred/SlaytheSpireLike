@@ -43,7 +43,7 @@ func hide_tooltip()->void:
 	print("DB hide_tooltip")
 
 func hide_ani()->void:
-	
+
 	if can_visible:
 		return
 	if tween:

@@ -10,7 +10,7 @@ func set_char_stats(v: CharacterStats)->void:
 		char_stats.stats_changed.connect(on_stats_changed)
 	if not is_node_ready():
 		await ready
-	
+
 	on_stats_changed()
 
 func on_stats_changed()->void:

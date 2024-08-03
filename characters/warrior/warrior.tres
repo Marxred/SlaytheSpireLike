@@ -6,6 +6,10 @@
 
 [resource]
 script = ExtResource("1_gtklc")
+character_name = "Warrior"
+description = "balenced health and mana
+good equipment"
+portrait = ExtResource("1_c1bml")
 starting_deck = ExtResource("2_qiepg")
 cards_per_turn = 4
 MAX_MANA = 3

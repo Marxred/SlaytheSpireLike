@@ -9,17 +9,22 @@ enum TYPE{WIN,LOSE}
 
 func _ready() -> void:
 	hide()
-	get_tree().paused = false
-	resume.pressed.connect(get_tree().reload_current_scene)
-	quit.pressed.connect(get_tree().quit)
+	resume.pressed.connect(func():
+							hide()
+							get_tree().reload_current_scene()
+							)
+	quit.pressed.connect(func():
+						hide()
+						Events.battle_won.emit()
+						)
 	Events.battle_over_requested.connect(show_panel)
+	visibility_changed.connect(change_visibility)
+
+func change_visibility()->void:
+	get_tree().paused = visible
 
 func show_panel(text:String, type:TYPE)->void:
-	get_tree().paused = true
 	label.text = text
 	resume.visible = type == TYPE.LOSE
 	quit.visible = type == TYPE.WIN
 	show()
-
-func hide_panel()->void:
-	hide()

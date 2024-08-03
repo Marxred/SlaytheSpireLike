@@ -1,16 +1,16 @@
 class_name Enemy
 extends Area2D
 ## 敌人类
-## 
+##
 const ARROW_OFFSET: int = 5
 
 @export var stats: EnemyStats: set = set_enemy_stats
 func set_enemy_stats(v: EnemyStats)->void:
 	stats = v.new_instance()
-	
+
 	if not stats.stats_changed.is_connected(update_stats):
 		stats.stats_changed.connect(update_stats)
-	
+
 	update_enemy()
 
 @onready var sprite_2d: Sprite2D = $Sprite2D
@@ -37,7 +37,7 @@ func update_action()->void:
 	if not current_action:
 		current_action = enemy_action_picker.get_action()
 		return
-	
+
 	var new_conditional_action: EnemyAction = enemy_action_picker.get_first_conditional_action()
 	if new_conditional_action and current_action != new_conditional_action:
 		current_action = new_conditional_action
@@ -47,7 +47,7 @@ func update_enemy()->void:
 		return
 	if not is_inside_tree():
 		await ready
-	
+
 	sprite_2d.texture = stats.ART
 	setup_ai()
 	update_stats()
@@ -55,7 +55,7 @@ func update_enemy()->void:
 func setup_ai()->void:
 	if enemy_action_picker:
 		enemy_action_picker.queue_free()
-	
+
 	var new_action_picker:EnemyActionPicker = stats.ai.instantiate()
 	add_child(new_action_picker)
 	enemy_action_picker = new_action_picker
@@ -65,7 +65,7 @@ func do_turn()->void:
 	stats.block = 0
 	if not current_action:
 		return
-	
+
 	current_action.perform_action()
 
 const WHITE_SPRITE_MATERIAL = preload("res://art/white_sprite_material.tres")
@@ -76,9 +76,9 @@ func take_damage(damage: int)->void:
 	#stats.take_damage(damage)
 	#if stats.health <= 0:
 		#queue_free()
-	
+
 	sprite_2d.material = WHITE_SPRITE_MATERIAL;
-	
+
 	var tween: Tween= create_tween()
 	tween.tween_callback(Shaker.shake.bind(self, 40 * float(damage)/stats.MAX_HEALTH, 0.15))
 	tween.tween_callback(stats.take_damage.bind(damage))
@@ -86,7 +86,7 @@ func take_damage(damage: int)->void:
 	tween.finished.connect(
 		func()->void:
 			sprite_2d.material = null;
-			
+
 			if stats.health <= 0:
 				queue_free()
 	)

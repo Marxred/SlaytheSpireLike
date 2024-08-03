@@ -3,6 +3,12 @@ extends Stats
 ## 角色状态类
 ## 扩展
 
+@export_group("Visuals")
+@export var character_name: String
+@export_multiline var description: String
+@export var portrait: Texture
+
+@export_group("Data")
 @export var starting_deck: CardPile
 @export var cards_per_turn: int
 @export var MAX_MANA: int

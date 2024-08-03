@@ -1,0 +1,88 @@
+[gd_scene load_steps=7 format=3 uid="uid://bglqjsb26ya01"]
+
+[ext_resource type="PackedScene" uid="uid://pqelfdev78cp" path="res://scenes/Map/map.tscn" id="1_8qu14"]
+[ext_resource type="Script" path="res://scenes/Run/run.gd" id="1_su7mb"]
+[ext_resource type="Resource" uid="uid://diou60mjxujrh" path="res://scenes/StartGame/run_setup.tres" id="2_bqsas"]
+[ext_resource type="PackedScene" uid="uid://3d3teb3hi32d" path="res://scenes/ui/card_pile_preview.tscn" id="4_sbtm0"]
+[ext_resource type="PackedScene" uid="uid://rg8yj4s80axv" path="res://scenes/ui/card_pile_opener.tscn" id="5_1qdm7"]
+[ext_resource type="Texture2D" uid="uid://iitufnc4dcft" path="res://art/deck.png" id="5_d4xho"]
+
+[node name="Run" type="Node"]
+script = ExtResource("1_su7mb")
+run_setup = ExtResource("2_bqsas")
+
+[node name="Map" parent="." instance=ExtResource("1_8qu14")]
+
+[node name="CurrentView" type="Node" parent="."]
+
+[node name="Debug" type="VBoxContainer" parent="."]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -38.0
+offset_right = 55.0
+offset_bottom = 38.0
+grow_vertical = 2
+
+[node name="Campfire" type="Button" parent="Debug"]
+custom_minimum_size = Vector2(32, 12)
+layout_mode = 2
+text = "campfire"
+
+[node name="Shop" type="Button" parent="Debug"]
+custom_minimum_size = Vector2(32, 12)
+layout_mode = 2
+text = "shop"
+
+[node name="Battle" type="Button" parent="Debug"]
+custom_minimum_size = Vector2(32, 12)
+layout_mode = 2
+text = "battle"
+
+[node name="BattleReward" type="Button" parent="Debug"]
+custom_minimum_size = Vector2(32, 12)
+layout_mode = 2
+text = "battle_reward"
+
+[node name="TreasureRoom" type="Button" parent="Debug"]
+custom_minimum_size = Vector2(32, 12)
+layout_mode = 2
+text = "treasure Room"
+
+[node name="Map" type="Button" parent="Debug"]
+custom_minimum_size = Vector2(32, 12)
+layout_mode = 2
+text = "Map"
+
+[node name="TopBar" type="CanvasLayer" parent="."]
+
+[node name="Background" type="ColorRect" parent="TopBar"]
+custom_minimum_size = Vector2(0, 22)
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 0.592157)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
+custom_minimum_size = Vector2(0, 22)
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 18.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="CardPileOpener" parent="TopBar/HBoxContainer" instance=ExtResource("5_1qdm7")]
+custom_minimum_size = Vector2(14, 14)
+layout_mode = 2
+texture_normal = ExtResource("5_d4xho")
+title = "Deck"
+
+[node name="CardPilePreview" parent="TopBar" instance=ExtResource("4_sbtm0")]
+visible = false
+
+[connection signal="pressed" from="Debug/Campfire" to="." method="_on_campfire_pressed"]
+[connection signal="pressed" from="Debug/Shop" to="." method="_on_shop_pressed"]
+[connection signal="pressed" from="Debug/Battle" to="." method="_on_battle_pressed"]
+[connection signal="pressed" from="Debug/BattleReward" to="." method="_on_battle_reward_pressed"]
+[connection signal="pressed" from="Debug/TreasureRoom" to="." method="_on_treasure_room_pressed"]
+[connection signal="pressed" from="Debug/Map" to="." method="_on_map_pressed"]

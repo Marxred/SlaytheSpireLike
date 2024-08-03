@@ -7,10 +7,10 @@ extends Node2D
 
 func set_character_stats(v: CharacterStats)->void:
 	stats = v
-	
+
 	if not stats.stats_changed.is_connected(update_stats):
 		stats.stats_changed.connect(update_stats)
-	
+
 	update_player()
 
 
@@ -19,7 +19,7 @@ func update_player()->void:
 		return
 	if not is_inside_tree():
 		await ready
-	
+
 	sprite_2d.texture = stats.ART
 	update_stats()
 
@@ -36,7 +36,7 @@ func take_damage(damage: int)->void:
 	#if stats.health <= 0:
 		#Events.player_died.emit()
 		#queue_free()
-	
+
 	sprite_2d.material = WHITE_SPRITE_MATERIAL;
 	var tween: Tween= create_tween()
 	tween.tween_callback(Shaker.shake.bind(self, 16, 0.15))

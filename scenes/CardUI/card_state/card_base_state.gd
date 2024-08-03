@@ -5,7 +5,7 @@ func enter()->void:
 	super()
 	if not card_ui.is_node_ready():
 		await card_ui.ready
-	
+
 	card_ui.panel.set("theme_override_styles/panel", card_ui.BASE_STYLE)
 	card_ui.reparent_requested.emit(card_ui)
 	card_ui.pivot_offset = Vector2.ZERO

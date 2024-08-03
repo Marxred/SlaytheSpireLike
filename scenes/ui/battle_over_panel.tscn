@@ -56,4 +56,4 @@ custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 10
-text = "Quit"
+text = "Leave"

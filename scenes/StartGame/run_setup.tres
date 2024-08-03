@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="RunStartup" load_steps=2 format=3 uid="uid://diou60mjxujrh"]
+
+[ext_resource type="Script" path="res://scenes/StartGame/start_up_data.gd" id="1_iblxu"]
+
+[resource]
+script = ExtResource("1_iblxu")
+type = 0

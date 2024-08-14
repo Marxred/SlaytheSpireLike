@@ -2,26 +2,31 @@ class_name Run
 extends Node
 
 @export var run_setup: RunStartup
+var stats: RunStats
 var char_stats:CharacterStats
 
 
 var current_view_child:PackedScene:set = set_current_view_child
-func set_current_view_child(scene:PackedScene)->void:
+func set_current_view_child(scene:PackedScene)->Node:
 	if current_view.get_child_count() > 0:
 		for i in current_view.get_children():
 			i.queue_free()
-	current_view.add_child(scene.instantiate())
-
-
-@onready var current_view: Node = $CurrentView
+	var new_scene:= scene.instantiate()
+	current_view.add_child(new_scene)
+	current_view_child = scene
+	return new_scene
 
 @onready var campfire: Button = $Debug/Campfire
 @onready var shop: Button = $Debug/Shop
 @onready var battle: Button = $Debug/Battle
 @onready var battle_reward: Button = $Debug/BattleReward
 @onready var treasure_room: Button = $Debug/TreasureRoom
-@onready var card_pile_opener: CardPileOpener = $TopBar/HBoxContainer/CardPileOpener
+
+@onready var current_view: Node = $CurrentView
+@onready var card_pile_opener: CardPileOpener = $TopBar/BarItems/CardPileOpener
+
 @onready var card_pile_preview: Control = $TopBar/CardPilePreview
+@onready var gold_ui: GoldUI = $TopBar/BarItems/GoldUI
 
 const BATTLE_REWARD = preload("res://scenes/Map/battle_reward.tscn")
 const CAMPFIRE = preload("res://scenes/Map/campfire.tscn")
@@ -43,20 +48,36 @@ func _ready() -> void:
 
 
 func _start_run()->void:
+	stats = RunStats.new()
 	setup_events_connections()
 	setup_top_bar()
 	print_debug("TODO: procedurally generate map")
+
 
 func setup_events_connections()->void:
 	Events.map_exited.connect(_on_map_exited)
 	Events.shop_exited.connect(set_current_view_child.bind(MAP))
 	Events.campfire_exited.connect(set_current_view_child.bind(MAP))
 	Events.battle_reward_exited.connect(set_current_view_child.bind(MAP))
+
 	Events.battle_won.connect(set_current_view_child.bind(BATTLE_REWARD))
+	Events.battle_won.connect(_on_battle_won)
+
 	Events.treasure_room_exited.connect(set_current_view_child.bind(MAP))
 
 func setup_top_bar()->void:
+	gold_ui.run_stats = stats
 	card_pile_opener.cardpile = char_stats.deck
+
+func _on_battle_won()->void:
+	var reward_scene:= set_current_view_child(BATTLE_REWARD) as BattleReward
+	reward_scene.run_stats = stats
+	reward_scene.char_stats = char_stats
+	#临时代码
+	reward_scene.add_gold_rewards(77)
+	reward_scene.add_card_rewards()
+	reward_scene.add_card_rewards()
+
 
 
 func _on_map_exited()->void:

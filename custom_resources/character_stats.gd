@@ -10,6 +10,7 @@ extends Stats
 
 @export_group("Data")
 @export var starting_deck: CardPile
+@export var draftable_cards: CardPile
 @export var cards_per_turn: int
 @export var MAX_MANA: int
 var mana: int : set = set_mana

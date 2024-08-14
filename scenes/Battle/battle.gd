@@ -25,11 +25,12 @@ func _ready() -> void:
 	battle_ui.initialize_card_pile_ui()
 
 func start_battle(_char_stats: CharacterStats)->void:
-	print("battle started!")
+	printerr("battle started!")
 	Music.play(battle_background, true)
 	player.update_player()
 	player_handler.start_battle(_char_stats)
-	enemy_handler.reset_enemy_actions()
+	#玩家先手，第一次的动作无效
+	#enemy_handler.reset_enemy_actions()
 
 
 func _on_enemy_trun_ended()->void:
@@ -41,8 +42,8 @@ func _on_enemy_handler_child_order_changed() -> void:
 	if enemy_handler.get_child_count() != 0:
 		return
 	Events.battle_over_requested.emit("Victory!", BattleOverPanel.TYPE.WIN)
-	print("Victory!")
+	printerr("Victory!")
 
 func _on_player_died()->void:
 	Events.battle_over_requested.emit("Game Over!", BattleOverPanel.TYPE.LOSE)
-	print("Game Over!")
+	printerr("Game Over!")

@@ -2,7 +2,7 @@ extends Node
 
 func play(music: AudioStream, single: bool = false)->void:
 	if not music:
-		print("DB no music")
+		printerr("DB no music")
 		return
 	if single:
 		stop()

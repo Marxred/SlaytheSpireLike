@@ -23,7 +23,7 @@ var current_action: EnemyAction: set = set_current_action
 
 func set_current_action(v: EnemyAction)->void:
 	if not v:
-		print("DB current_action null!")
+		printerr("DB current_action null!")
 	current_action = v
 	if current_action:
 		intent_ui._update_intent(current_action.intent)

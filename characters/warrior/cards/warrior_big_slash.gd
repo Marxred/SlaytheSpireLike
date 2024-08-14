@@ -16,3 +16,4 @@ func apply_effects(targets)->void:
 	damage_effect.amounts = amounts
 	damage_effect.sfx = sfx
 	damage_effect.execute(targets)
+	printerr("This will also apply a status effect later on!")

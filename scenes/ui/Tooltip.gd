@@ -24,7 +24,7 @@ func show_tooltip(icon: Texture, description: String)->void:
 	tooltip_text_label.text = description
 	can_visible = true
 	show_ani()
-	print("DB show_tooltip")
+	printerr("DB show_tooltip")
 
 
 func show_ani()->void:
@@ -40,7 +40,7 @@ func show_ani()->void:
 func hide_tooltip()->void:
 	can_visible = false
 	get_tree().create_timer(buffer_time, false).timeout.connect(hide_ani)
-	print("DB hide_tooltip")
+	printerr("DB hide_tooltip")
 
 func hide_ani()->void:
 

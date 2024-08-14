@@ -7,8 +7,7 @@ var mini_time_pass: bool = false
 func enter()->void:
 	super()
 	Events.card_drag_started.emit(card_ui)
-	#card_ui.panel.panel = card_ui.DARGGING_STYLE
-	card_ui.panel.set("theme_override_styles/panel", card_ui.DARGGING_STYLE)
+	card_ui.visuals.panel.set("theme_override_styles/panel", card_ui.DARGGING_STYLE)
 	var ui_layer:= get_tree().get_first_node_in_group("ui_layer")
 	if ui_layer:
 		card_ui.reparent(ui_layer)

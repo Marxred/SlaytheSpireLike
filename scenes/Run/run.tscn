@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bglqjsb26ya01"]
+[gd_scene load_steps=8 format=3 uid="uid://bglqjsb26ya01"]
 
 [ext_resource type="PackedScene" uid="uid://pqelfdev78cp" path="res://scenes/Map/map.tscn" id="1_8qu14"]
 [ext_resource type="Script" path="res://scenes/Run/run.gd" id="1_su7mb"]
 [ext_resource type="Resource" uid="uid://diou60mjxujrh" path="res://scenes/StartGame/run_setup.tres" id="2_bqsas"]
+[ext_resource type="PackedScene" uid="uid://bcsyqyxj3ioj4" path="res://scenes/ui/gold_ui.tscn" id="4_fnsob"]
 [ext_resource type="PackedScene" uid="uid://3d3teb3hi32d" path="res://scenes/ui/card_pile_preview.tscn" id="4_sbtm0"]
 [ext_resource type="PackedScene" uid="uid://rg8yj4s80axv" path="res://scenes/ui/card_pile_opener.tscn" id="5_1qdm7"]
 [ext_resource type="Texture2D" uid="uid://iitufnc4dcft" path="res://art/deck.png" id="5_d4xho"]
@@ -60,18 +61,27 @@ text = "Map"
 custom_minimum_size = Vector2(0, 22)
 anchors_preset = 10
 anchor_right = 1.0
+offset_bottom = 20.0
 grow_horizontal = 2
 color = Color(0, 0, 0, 0.592157)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
+[node name="BarItems" type="HBoxContainer" parent="TopBar"]
 custom_minimum_size = Vector2(0, 22)
 anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 18.0
 grow_horizontal = 2
-alignment = 2
+theme_override_constants/separation = 4
+alignment = 1
 
-[node name="CardPileOpener" parent="TopBar/HBoxContainer" instance=ExtResource("5_1qdm7")]
+[node name="GoldUI" parent="TopBar/BarItems" instance=ExtResource("4_fnsob")]
+layout_mode = 2
+
+[node name="Placeholder" type="Control" parent="TopBar/BarItems"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="CardPileOpener" parent="TopBar/BarItems" instance=ExtResource("5_1qdm7")]
 custom_minimum_size = Vector2(14, 14)
 layout_mode = 2
 texture_normal = ExtResource("5_d4xho")

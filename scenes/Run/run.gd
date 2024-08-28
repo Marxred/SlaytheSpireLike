@@ -30,7 +30,9 @@ func set_current_view_child(scene:PackedScene)->Node:
 
 const BATTLE_REWARD = preload("res://scenes/Map/battle_reward.tscn")
 const CAMPFIRE = preload("res://scenes/Map/campfire.tscn")
-const MAP = preload("res://scenes/Map/map.tscn")
+#const MAP = preload("res://scenes/Map/map.tscn")
+@onready var map: MAP = $Map
+
 const SHOP = preload("res://scenes/Map/shop.tscn")
 const TREASURE_ROOM = preload("res://scenes/Map/treasure_room.tscn")
 const BATTLE = preload("res://scenes/Battle/battle.tscn")
@@ -51,19 +53,20 @@ func _start_run()->void:
 	stats = RunStats.new()
 	setup_events_connections()
 	setup_top_bar()
-	print_debug("TODO: procedurally generate map")
+	#print_debug("TODO: procedurally generate map")
+	map.create_new_map()
 
 
 func setup_events_connections()->void:
 	Events.map_exited.connect(_on_map_exited)
-	Events.shop_exited.connect(set_current_view_child.bind(MAP))
-	Events.campfire_exited.connect(set_current_view_child.bind(MAP))
-	Events.battle_reward_exited.connect(set_current_view_child.bind(MAP))
+	Events.shop_exited.connect(_show_map)
+	Events.campfire_exited.connect(_show_map)
+	Events.battle_reward_exited.connect(_show_map)
 
 	Events.battle_won.connect(set_current_view_child.bind(BATTLE_REWARD))
 	Events.battle_won.connect(_on_battle_won)
 
-	Events.treasure_room_exited.connect(set_current_view_child.bind(MAP))
+	Events.treasure_room_exited.connect(_show_map)
 
 func setup_top_bar()->void:
 	gold_ui.run_stats = stats
@@ -80,8 +83,24 @@ func _on_battle_won()->void:
 
 
 
-func _on_map_exited()->void:
+func _on_map_exited(room_ui:RoomUI)->void:
 	print_debug("map exited")
+	print_debug("enter %s"% room_ui.room)
+	match room_ui.room.type:
+		Room.TYPE.MONSTERS:
+			current_view_child = BATTLE
+		Room.TYPE.SHOP:
+			current_view_child = SHOP
+		Room.TYPE.TREASURE:
+			current_view_child = TREASURE_ROOM
+		Room.TYPE.CAMPFIRE:
+			current_view_child = CAMPFIRE
+		Room.TYPE.BOSS:
+			current_view_child = BATTLE
+	_hide_map()
+
+func _hide_map():
+	map.hide_map()
 
 func _on_campfire_pressed() -> void:
 	current_view_child = CAMPFIRE
@@ -103,4 +122,10 @@ func _on_treasure_room_pressed() -> void:
 
 
 func _on_map_pressed() -> void:
-	current_view_child = MAP
+	#current_view_child = MAP
+	_show_map()
+
+func _show_map()->void:
+	if current_view.get_child_count()>0:
+		current_view.get_child(0).queue_free()
+	map.show_map()

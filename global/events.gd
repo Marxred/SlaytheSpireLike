@@ -25,7 +25,10 @@ signal enemy_trun_ended
 signal battle_over_requested(text: String, type:BattleOverPanel.TYPE)
 signal battle_won
 ##
-signal map_exited
+signal enter_room()
+
+##
+signal map_exited(room:RoomUI)
 signal shop_exited
 signal campfire_exited
 signal battle_reward_exited

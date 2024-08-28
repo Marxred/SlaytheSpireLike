@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjglr6mvu7h4q"]
+
+[ext_resource type="Texture2D" uid="uid://d4kg4lire6h0p" path="res://art/line.png" id="1_38g4r"]
+
+[node name="ConnectRoomLine" type="Line2D"]
+texture_repeat = 2
+points = PackedVector2Array(256, 143, 0, 0)
+width = 12.0
+texture = ExtResource("1_38g4r")
+texture_mode = 1

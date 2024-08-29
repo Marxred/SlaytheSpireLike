@@ -12,7 +12,6 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("camera_move_dwon"):
 		camera_2d.position.y += CAMERA_SPEED
 		camera_2d.position.y = clampf(camera_2d.position.y, camera_edge_y, -80)
-
 	if event is InputEventKey:
 		if event.keycode == KEY_1:
 			camera_2d.zoom += Vector2(0.1,0.1)
@@ -23,6 +22,7 @@ func _input(event: InputEvent) -> void:
 @onready var map_generator: MapGenerator = $MapGenerator
 
 var current_rooms:Array[RoomUI]=[]
+var current_room:RoomUI
 #func _ready() -> void:
 	#create_new_map()
 
@@ -93,7 +93,7 @@ func unlock_rooms(enter_room:RoomUI)->void:
 
 func on_room_entered(room_ui:RoomUI)->void:
 	Events.map_exited.emit(room_ui)
-	unlock_rooms(room_ui)
+	current_room = room_ui
 
 
 func unlock_rooms2(next_rooms:Array[RoomUI])->void:

@@ -129,3 +129,4 @@ func _show_map()->void:
 	if current_view.get_child_count()>0:
 		current_view.get_child(0).queue_free()
 	map.show_map()
+	map.unlock_rooms(map.current_room)

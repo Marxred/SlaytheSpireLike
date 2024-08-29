@@ -1,9 +1,10 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://celpuetiajyjm"]
+[gd_resource type="Theme" load_steps=17 format=3 uid="uid://celpuetiajyjm"]
 
 [ext_resource type="StyleBox" uid="uid://b0yrygcdf7biu" path="res://scenes/CardUI/card_base_stylebox.tres" id="1_ca0d1"]
 [ext_resource type="FontFile" uid="uid://dskmdk146n4rq" path="res://art/pixel_rpg.ttf" id="1_jojgw"]
 [ext_resource type="StyleBox" uid="uid://c4tk30pomj87j" path="res://scenes/CardUI/card_dragging_stylebox.tres" id="1_pyicb"]
 [ext_resource type="StyleBox" uid="uid://dg42wdp14yr1t" path="res://scenes/CardUI/card_hover_stylebox.tres" id="2_r7ere"]
+[ext_resource type="Texture2D" uid="uid://0qs3qvr381a3" path="res://art/arrow_small_disabled.png" id="4_ynner"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1fesx"]
 bg_color = Color(0.0509804, 0.278431, 0.239216, 0.588235)
@@ -13,6 +14,47 @@ border_width_right = 1
 border_width_bottom = 1
 border_color = Color(0.819349, 0.794827, 0.782189, 1)
 
+[sub_resource type="Gradient" id="Gradient_8l7wb"]
+offsets = PackedFloat32Array(0, 0.526096, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.4238, 0.4238, 0.4238, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_himvu"]
+gradient = SubResource("Gradient_8l7wb")
+width = 10
+height = 5
+
+[sub_resource type="Gradient" id="Gradient_s4wum"]
+offsets = PackedFloat32Array(0, 0.231733, 0.507307, 0.707724, 1)
+colors = PackedColorArray(0.192157, 0.568627, 0.513726, 1, 0.552941, 0.435294, 0.423529, 1, 0.156863, 0.392157, 0.984314, 1, 0.709804, 0.0509804, 0.913725, 1, 0.0509804, 0.278431, 0.239216, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cm7oc"]
+gradient = SubResource("Gradient_s4wum")
+width = 10
+height = 10
+fill_from = Vector2(0, 1)
+fill_to = Vector2(1, 1)
+
+[sub_resource type="Gradient" id="Gradient_4in0e"]
+colors = PackedColorArray(0.798414, 0.00126276, 0.903679, 1, 0.0679982, 0.4495, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ybixq"]
+gradient = SubResource("Gradient_4in0e")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2v2c5"]
+texture = SubResource("GradientTexture1D_ybixq")
+
+[sub_resource type="Gradient" id="Gradient_nwuno"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.533769, 1)
+colors = PackedColorArray(0.313726, 0.768627, 0.443137, 0.552941, 0.941176, 0.607843, 0.568627, 0.545098, 0.101961, 0.611765, 0.568627, 0.54902)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iny27"]
+gradient = SubResource("Gradient_nwuno")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_85fhq"]
+texture = SubResource("GradientTexture2D_iny27")
+
 [resource]
 default_font = ExtResource("1_jojgw")
 default_font_size = 6
@@ -21,5 +63,18 @@ Button/styles/focus = ExtResource("2_r7ere")
 Button/styles/hover = ExtResource("2_r7ere")
 Button/styles/normal = ExtResource("1_ca0d1")
 Button/styles/pressed = ExtResource("1_pyicb")
+GridContainer/constants/h_separation = 4
+GridContainer/constants/v_separation = 4
 Panel/styles/panel = ExtResource("1_ca0d1")
 PanelContainer/styles/panel = ExtResource("1_ca0d1")
+VScrollBar/icons/decrement = SubResource("GradientTexture2D_himvu")
+VScrollBar/icons/decrement_highlight = ExtResource("4_ynner")
+VScrollBar/icons/decrement_pressed = SubResource("GradientTexture2D_himvu")
+VScrollBar/icons/increment = SubResource("GradientTexture2D_cm7oc")
+VScrollBar/icons/increment_highlight = SubResource("GradientTexture2D_cm7oc")
+VScrollBar/icons/increment_pressed = SubResource("GradientTexture2D_cm7oc")
+VScrollBar/styles/grabber = SubResource("StyleBoxTexture_2v2c5")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxTexture_2v2c5")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxTexture_2v2c5")
+VScrollBar/styles/scroll = SubResource("StyleBoxTexture_85fhq")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxTexture_85fhq")

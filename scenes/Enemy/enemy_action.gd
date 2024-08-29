@@ -8,7 +8,7 @@ enum Type{CONDITIONAL, CHANCE_BASED}
 @export_range(0.0, 10.0) var chance_weight: float = 0.0
 @export var sfx: AudioStream
 
-@onready var accumulated_weight: float = 0.0 
+@onready var accumulated_weight: float = 0.0
 var enemy: Enemy
 var target: Node2D
 

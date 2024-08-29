@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://cglmfl1b6g1fs"]
+
+[ext_resource type="Script" path="res://scenes/ui/card_rewards.gd" id="1_1r8fp"]
+[ext_resource type="PackedScene" uid="uid://efg0ke80cwso" path="res://scenes/ui/card_menu_ui.tscn" id="1_s4vbq"]
+[ext_resource type="PackedScene" uid="uid://c6si2e8md1ole" path="res://scenes/ui/card_preview_tool_tip.tscn" id="1_warf6"]
+
+[node name="CardRewards" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.541176)
+script = ExtResource("1_1r8fp")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -69.0
+offset_top = -50.0
+offset_right = 65.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 48
+
+[node name="Cards" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="CardMenuUI" parent="VBoxContainer/Cards" instance=ExtResource("1_s4vbq")]
+layout_mode = 2
+
+[node name="CardMenuUI2" parent="VBoxContainer/Cards" instance=ExtResource("1_s4vbq")]
+layout_mode = 2
+
+[node name="CardMenuUI3" parent="VBoxContainer/Cards" instance=ExtResource("1_s4vbq")]
+layout_mode = 2
+
+[node name="SkipButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(32, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Skip"
+
+[node name="CardPreviewToolTip" parent="." instance=ExtResource("1_warf6")]
+visible = false
+layout_mode = 1
+offset_top = 19.0
+offset_bottom = 6.0
+custom_modulate = Color(0.392157, 0.133333, 0.243137, 0.772549)
+
+[node name="TakeButton" type="Button" parent="CardPreviewToolTip"]
+custom_minimum_size = Vector2(32, 12)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -38.0
+offset_right = 14.0
+offset_bottom = -26.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Take"
+
+[connection signal="pressed" from="VBoxContainer/SkipButton" to="." method="_on_skip_button_pressed"]
+[connection signal="pressed" from="CardPreviewToolTip/TakeButton" to="." method="_on_take_button_pressed"]

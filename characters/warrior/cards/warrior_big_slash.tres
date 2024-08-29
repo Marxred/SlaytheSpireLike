@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=4 format=3 uid="uid://d3vub5fsngfgl"]
+
+[ext_resource type="Texture2D" uid="uid://44jbm5bqr4k" path="res://art/tile_0117.png" id="1_n68hr"]
+[ext_resource type="Script" path="res://characters/warrior/cards/warrior_big_slash.gd" id="2_5huu6"]
+[ext_resource type="AudioStream" uid="uid://dixklg6g4jnsq" path="res://art/slash.ogg" id="3_kyeba"]
+
+[resource]
+script = ExtResource("2_5huu6")
+amounts = 8
+id = "warrior_big_slash"
+type = 0
+rarity = 1
+target = 1
+cost = 2
+sfx = ExtResource("3_kyeba")
+icon = ExtResource("1_n68hr")
+tooltip_text = "deals a single enemy {amounts} damages"

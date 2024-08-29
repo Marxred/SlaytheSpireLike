@@ -4,25 +4,6 @@ extends Control
 signal reparent_requested(which_card_ui: CardUI)
 
 
-const BASE_STYLE = preload("res://scenes/CardUI/card_base_stylebox.tres")
-const DARGGING_STYLE = preload("res://scenes/CardUI/card_dragging_stylebox.tres")
-const HOVER_STYLE = preload("res://scenes/CardUI/card_hover_stylebox.tres")
-var parent:Control
-var tween: Tween
-var disabled: bool= false
-var playable:bool= true: set = set_playable
-func set_playable(v: bool)->void:
-	playable = v
-	if not playable:
-		cost.add_theme_color_override("font_color", Color.RED)
-		#icon.modulate = Color(1,1,1,0.5)
-		icon.modulate.a = 0.5
-	else:
-		cost.remove_theme_color_override("font_color")
-		icon.modulate = Color(1,1,1,1)
-		icon.modulate.a = 1
-
-
 @export var char_stats: CharacterStats: set = set_char_stats
 func set_char_stats(v: CharacterStats)->void:
 	char_stats = v
@@ -31,23 +12,46 @@ func set_char_stats(v: CharacterStats)->void:
 func on_char_stats_changed()->void:
 	self.playable = char_stats.can_play_card(card)
 
-
 @export var card: Card: set= set_card
 func set_card(v:Card)->void:
 	if not is_node_ready():
 		await self.ready
 	card = v
-	cost.text = str(card.cost)
-	icon.texture = card.icon
+	visuals.card = card
+	#cost.text = str(card.cost)
+	#icon.texture = card.icon
 
+
+var parent:Control
+var tween: Tween
+var disabled: bool= false
+var playable:bool= true: set = set_playable
+func set_playable(v: bool)->void:
+	playable = v
+	if not playable:
+		visuals.cost.add_theme_color_override("font_color", Color.RED)
+		#icon.modulate = Color(1,1,1,0.5)
+		visuals.icon.modulate.a = 0.5
+	else:
+		visuals.cost.remove_theme_color_override("font_color")
+		visuals.icon.modulate = Color(1,1,1,1)
+		visuals.icon.modulate.a = 1
+
+
+const BASE_STYLE = preload("res://scenes/CardUI/card_base_stylebox.tres")
+const DARGGING_STYLE = preload("res://scenes/CardUI/card_dragging_stylebox.tres")
+const HOVER_STYLE = preload("res://scenes/CardUI/card_hover_stylebox.tres")
 
 @onready var drop_point_detector: Area2D = $DropPointDetector
 @onready var card_state_machine: CardStateMachine = $CardStateMachine as CardStateMachine
 @onready var targets: Array[Node] = []
-@onready var panel: Panel = $Panel
-@onready var icon: TextureRect = $Icon
-@onready var cost: Label = $Cost
 @onready var original_index:int = self.get_index()
+
+@onready var visuals: CardVisuals = $Visuals
+#@onready var panel: Panel = $Panel
+#@onready var icon: TextureRect = $Icon
+#@onready var cost: Label = $Cost
+
 
 func _ready()->void:
 	card_state_machine.init(self)

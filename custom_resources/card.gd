@@ -3,10 +3,17 @@ extends Resource
 
 enum Type{ATTACK, SKILL, POWER}
 enum Target{SELF, SINGLE_ENEMY, ALL_ENEMY, EVERYONE}
+enum Rarity{COMMON, UNCOMMON, RARE}
+const RARITY_COLOR :Dictionary={
+	Card.Rarity.COMMON:Color.GRAY,
+	Card.Rarity.UNCOMMON:Color.CORNFLOWER_BLUE,
+	Card.Rarity.RARE:Color.GOLD,
+}
 
 @export_group("Card Attributes")
 @export var id: String
-@export var type: Type 
+@export var type: Type
+@export var rarity: Rarity
 @export var target: Target
 @export var cost: int
 @export var sfx: AudioStream
@@ -24,7 +31,7 @@ func is_single_targeted()-> bool :
 func get_targets(targets: Array[Node])->Array[Node]:
 	if not targets:
 		return []
-	
+
 	var tree = targets[0].get_tree()
 	match target:
 		Target.SELF:

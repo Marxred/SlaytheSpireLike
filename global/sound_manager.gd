@@ -2,14 +2,14 @@ extends Node
 
 func play(music: AudioStream, single: bool = false)->void:
 	if not music:
-		print("DB no music")
+		printerr("DB no music")
 		return
 	if single:
 		stop()
 		var player = get_child(0) as AudioStreamPlayer
 		player.stream = music
 		player.play()
-		
+
 	for player:AudioStreamPlayer in get_children():
 		if not player.is_playing():
 			player.stream = music

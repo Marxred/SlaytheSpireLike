@@ -1,7 +1,7 @@
 class_name Stats
 extends Resource
 ## 状态基类，有最基本的状态，血量，护甲。
-## 
+##
 
 @export var init_block:int = 0
 @export var MAX_HEALTH: int = 1
@@ -24,7 +24,7 @@ func set_block(v:int)->void:
 func take_damage(damage: int)->void:
 	if damage <= 0:
 		return
-	
+
 	var block_damage: int = damage
 	damage = clampi(damage - block, 0, damage)
 	block -= block_damage

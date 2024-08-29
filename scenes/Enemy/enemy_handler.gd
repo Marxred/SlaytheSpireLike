@@ -29,6 +29,6 @@ func _enemy_action_completed(enemy: Enemy)->void:
 				Events.enemy_trun_ended.emit()
 				)
 		return
-	
+
 	var next_enemy: Enemy = get_child(enemy.get_index() + 1)
 	next_enemy.do_turn()
